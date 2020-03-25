@@ -1,0 +1,13 @@
+.btn-default.active {
+  background-color: #64be1e;
+}
+
+.irs-bar {
+  background-color: #64be1e;
+  border-top-color: #64be1e;
+  border-bottom-color: #64be1e;
+}
+
+.irs-from, .irs-to {
+  background-color: transparent;
+}
