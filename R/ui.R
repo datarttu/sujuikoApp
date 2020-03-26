@@ -166,6 +166,7 @@ ui <- dashboardPage(
           inline = TRUE
         ),
         # TODO measure value boxes
+        title = "Basic statistics",
         width = 12,
         collapsible = TRUE
       )
