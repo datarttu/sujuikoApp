@@ -163,7 +163,7 @@ ui <- dashboardPage(
       box(
         
         column(
-          width = 3,
+          width = 2,
           htmlOutput(
             outputId = "values_basic_stats",
             inline = TRUE
@@ -171,7 +171,7 @@ ui <- dashboardPage(
         ),
         
         column(
-          width = 9,
+          width = 10,
           
           valueBoxOutput(
             outputId = "values_otp_early",
