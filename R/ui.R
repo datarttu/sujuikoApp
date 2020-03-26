@@ -161,6 +161,10 @@ ui <- dashboardPage(
     
     fluidRow(
       box(
+        htmlOutput(
+          outputId = "values_basic_stats",
+          inline = TRUE
+        ),
         # TODO measure value boxes
         width = 12,
         collapsible = TRUE
