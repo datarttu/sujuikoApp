@@ -4,6 +4,10 @@ server <- function(input, output, session) {
   
   # TODO global parameters (sidebar)
   
+  # TODO Track current analysis parameters vs current results
+  
+  # TODO "Run / update" button action
+  
   # Network map, basic elements
   output$nw_map <- leaflet::renderLeaflet({
     leaflet::leaflet() %>%

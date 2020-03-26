@@ -126,6 +126,18 @@ ui <- dashboardPage(
       width = "100%"
     ),
     
+    # Data is updated only after clicking this button.
+    # TODO  The button should be updated like this:
+    #       a) Red "Run analysis" in the beginning.
+    #       b) Green "Up to date" when current results ~ current parameters
+    #          (no action if button is clicked now).
+    #       c) Yellow "Update analysis" if parameters have been changed.
+    actionBttn(
+      inputId = "run_analysis",
+      label = "Run analysis",
+      style = "material-flat",
+      color = "danger"
+    ),
     
     # TODO download current data
     
