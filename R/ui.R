@@ -161,10 +161,19 @@ ui <- dashboardPage(
     
     fluidRow(
       box(
-        htmlOutput(
-          outputId = "values_basic_stats",
-          inline = TRUE
+        
+        column(
+          width = 3,
+          htmlOutput(
+            outputId = "values_basic_stats",
+            inline = TRUE
+          )
         ),
+        
+        column(
+          width = 9
+        ),
+        
         # TODO measure value boxes
         title = "Basic statistics",
         width = 12,
