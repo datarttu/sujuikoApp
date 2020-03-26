@@ -25,6 +25,37 @@ server <- function(input, output, session) {
     )
   )
   
+  # Value boxes of the results on the top row.
+  # TODO Make the values dynamic,
+  # TODO Set the box color according to the value.
+  # TODO Enable changing the earliness / lateness thresholds.
+  output$values_otp_early <- renderValueBox({
+    valueBox(
+      value = "4 %",
+      subtitle = "early departures (< 0 s)",
+      icon = icon("hourglass-start"),
+      color = "green"
+    )
+  })
+  
+  output$values_otp_late <- renderValueBox({
+    valueBox(
+      value = "32 %",
+      subtitle = "late departures (> 2 min)",
+      icon = icon("hourglass-end"),
+      color = "orange"
+    )
+  })
+  
+  output$values_drivetime_adherence <- renderValueBox({
+    valueBox(
+      value = "79 %",
+      subtitle = "stop-to-stop times longer than scheduled",
+      icon = icon("stopwatch"),
+      color = "red"
+    )
+  })
+  
   # TODO selected measure value boxes
   
   # TODO plot

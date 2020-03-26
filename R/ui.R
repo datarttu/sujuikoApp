@@ -171,7 +171,23 @@ ui <- dashboardPage(
         ),
         
         column(
-          width = 9
+          width = 9,
+          
+          valueBoxOutput(
+            outputId = "values_otp_early",
+            width = 4
+          ),
+          
+          valueBoxOutput(
+            outputId = "values_otp_late",
+            width = 4
+          ),
+          
+          valueBoxOutput(
+            outputId = "values_drivetime_adherence",
+            width = 4
+          )
+          
         ),
         
         # TODO measure value boxes
