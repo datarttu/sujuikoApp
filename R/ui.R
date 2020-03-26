@@ -30,6 +30,8 @@ ui <- dashboardPage(
       tags$link(rel = "stylesheet", type = "text/css", href = "style.css")
     ),
     
+    tags$br(),
+    
     # Time parameters.
     # We may want to make this into a separate module
     # if we implement A/B comparison features at some point.
@@ -72,6 +74,8 @@ ui <- dashboardPage(
       width = "100%"
     ),
     
+    tags$br(),
+    
     # TODO select mode
     
     # Included / excluded routes.
@@ -89,6 +93,8 @@ ui <- dashboardPage(
       ),
       width = "100%"
     ),
+    
+    tags$br(),
     
     # Stop-to-stop filter:
     # a) If only start OR end stops are selected,
@@ -125,6 +131,8 @@ ui <- dashboardPage(
       ),
       width = "100%"
     ),
+    
+    tags$br(),
     
     # Data is updated only after clicking this button.
     # TODO  The button should be updated like this:
