@@ -1,3 +1,10 @@
+# Placeholder variables:
+# replace these with dynamic values later
+routes_available <- c(
+  "1001 1", "1001 2", "1002 1", "1002 2", "1003 1", "1003 2",
+  "1006 1", "1006 2", "1006T 1", "1006T 2", "1007 1", "1007 2"
+)
+
 ui <- dashboardPage(
   
   dashboardHeader(
@@ -55,7 +62,21 @@ ui <- dashboardPage(
     
     # TODO select mode
     
-    # TODO include / exclude routes
+    # Included / excluded routes.
+    # Empty include list means all routes are included.
+    
+    pickerInput(
+      inputId = "routes_selected",
+      label = "Routes (no selection = all included)", 
+      choices = routes_available, # TODO: replace with dynamic values from database!
+      multiple = TRUE,
+      options = list(
+        `actions-box` = TRUE,
+        `live-search` = TRUE,
+        `selected-text-format` = "count > 5"
+      ),
+      width = "100%"
+    ),
     
     # TODO include / exclude links
     
