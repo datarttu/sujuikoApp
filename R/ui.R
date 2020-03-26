@@ -149,8 +149,13 @@ ui <- dashboardPage(
     
     fluidRow(
       box(
-        # TODO leaflet map
-        width = 12
+        leaflet::leafletOutput(
+          outputId = "nw_map",
+          height = 600
+        ),
+        title = "Network map",
+        width = 12,
+        collapsible = TRUE
       )
     ),
     
