@@ -25,9 +25,12 @@ server <- function(input, output, session) {
     dsn = dbpool,
     query = "
     SELECT edge, subid, mode, oneway, 
+      CASE
+        WHEN mode = 'tram'::mode_type THEN '#00985f'
+        ELSE '#007ac9'
+      END AS clr,
       ST_Transform(geom, 4326) AS geom 
-    FROM test_split 
-    WHERE mode = 'tram'::mode_type;
+    FROM test_split;
     "
   )
   
@@ -38,7 +41,7 @@ server <- function(input, output, session) {
       leaflet::setView(24.938, 60.232, 11) %>%
       leaflet::addPolylines(
         data = df_base_nw,
-        color = "#00985f",
+        color = ~clr,
         weight = 2,
         label = ~sprintf("%d-%d, oneway: %s",
                          edge, subid, oneway)
