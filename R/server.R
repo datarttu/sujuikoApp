@@ -97,7 +97,7 @@ server <- function(input, output, session) {
   output$placeholder <- renderText("test text")
   
   session$onSessionEnded(function() {
-    # TODO pool close
+    pool::poolClose(dbpool)
     stopApp()
   })
   
