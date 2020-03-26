@@ -4,6 +4,18 @@ routes_available <- c(
   "1001 1", "1001 2", "1002 1", "1002 2", "1003 1", "1003 2",
   "1006 1", "1006 2", "1006T 1", "1006T 2", "1007 1", "1007 2"
 )
+stops_available <- c(
+  "6120216 Haapajärvi" = 6120216,
+  "1431109 Kettulehto" = 1431109,
+  "2612201 Luhtaniitty" = 2612201,
+  "2712202 Brödtorp" = 2712202,
+  "1180121 Auroran sairaala" = 1180121,
+  "1173107 Vaihdemiehenkatu" = 1173107,
+  "1100128 Polariksenkatu" = 1100128,
+  "2412229 Soukantori" = 2412229,
+  "1220430 Kotkankatu" = 1220430,
+  "1492151 Kellaripellonpolku" = 1492151
+)
 
 ui <- dashboardPage(
   
@@ -68,7 +80,7 @@ ui <- dashboardPage(
     pickerInput(
       inputId = "routes_selected",
       label = "Routes (no selection = all included)", 
-      choices = routes_available, # TODO: replace with dynamic values from database!
+      choices = routes_available, # TODO Replace with dynamic values from database
       multiple = TRUE,
       options = list(
         `actions-box` = TRUE,
@@ -78,7 +90,42 @@ ui <- dashboardPage(
       width = "100%"
     ),
     
-    # TODO include / exclude links
+    # Stop-to-stop filter:
+    # a) If only start OR end stops are selected,
+    #    include routes that go through any of the selected stops.
+    # b) If both start AND end stops are selected,
+    #    include routes that go through any of the start stops
+    #    and then go through any of the end stops (in this order).
+    # TODO In case b), should we only load the segments between the selected stops,
+    #      or all the data for those routes?
+    #      The first option is tricky for multiple dep and arr stops.
+    #      At least we should highlight the stop nodes on the map.
+    pickerInput(
+      inputId = "dep_stops_selected",
+      label = "Departing from any of these stops",
+      choices = stops_available, # TODO Replace with dynamic values from database
+      multiple = TRUE,
+      options = list(
+        `actions-box` = TRUE,
+        `live-search` = TRUE,
+        `selected-text-format` = "count > 2"
+      ),
+      width = "100%"
+    ),
+    
+    pickerInput(
+      inputId = "arr_stops_selected",
+      label = "Arriving at any of these stops",
+      choices = stops_available, # TODO Replace with dynamic values from database
+      multiple = TRUE,
+      options = list(
+        `actions-box` = TRUE,
+        `live-search` = TRUE,
+        `selected-text-format` = "count > 2"
+      ),
+      width = "100%"
+    ),
+    
     
     # TODO download current data
     
