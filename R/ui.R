@@ -148,18 +148,17 @@ ui <- dashboardPage(
     ),
     
     fluidRow(
+      
       box(
         leaflet::leafletOutput(
           outputId = "nw_map",
           height = 600
         ),
         title = "Network map",
-        width = 12,
+        width = 6,
         collapsible = TRUE
-      )
-    ),
-    
-    fluidRow(
+      ),
+      
       tabBox(
         
         tabPanel(
@@ -175,9 +174,10 @@ ui <- dashboardPage(
         ),
         
         id = "dataTabBox",
-        width = 12
+        width = 6
         
       )
+      
     )
     
   )
