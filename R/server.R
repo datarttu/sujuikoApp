@@ -1,6 +1,17 @@
 server <- function(input, output, session) {
   
-  # TODO db connection (pool)
+  # Connect to database.
+  # TODO  Wrap inside withProgress?
+  # TODO  Add support for different database users.
+  dbpool <- pool::dbPool(
+    drv = RPostgreSQL::PostgreSQL(),
+    host = Sys.getenv("DBHOST"),
+    port = Sys.getenv("DBPORT"),
+    dbname = Sys.getenv("DBNAME"),
+    user = Sys.getenv("DBUSER"),
+    password = Sys.getenv("DBPASSWORD"),
+    idleTimeout = 3600000
+  )
   
   # TODO global parameters (sidebar)
   
@@ -8,11 +19,30 @@ server <- function(input, output, session) {
   
   # TODO "Run / update" button action
   
+  # Get base network.
+  # TODO  Use production network with required fields.
+  df_base_nw <- sf::st_read(
+    dsn = dbpool,
+    query = "
+    SELECT edge, subid, mode, oneway, 
+      ST_Transform(geom, 4326) AS geom 
+    FROM test_split 
+    WHERE mode = 'tram'::mode_type;
+    "
+  )
+  
   # Network map, basic elements
   output$nw_map <- leaflet::renderLeaflet({
     leaflet::leaflet() %>%
       leaflet::addProviderTiles(leaflet::providers$Esri.WorldGrayCanvas) %>%
-      leaflet::setView(24.938, 60.232, 11)
+      leaflet::setView(24.938, 60.232, 11) %>%
+      leaflet::addPolylines(
+        data = df_base_nw,
+        color = "#00985f",
+        weight = 2,
+        label = ~sprintf("%d-%d, oneway: %s",
+                         edge, subid, oneway)
+      )
   })
   
   # Basic observation statistics of the results on the top row.
